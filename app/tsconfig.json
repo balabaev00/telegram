@@ -1,0 +1,27 @@
+{
+  "include": ["src/**/*", "test/**/*"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2021",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "rootDirs": ["src", "test"],
+    "paths": {
+      "@configs/*": ["src/configs/*"],
+      "@core/*": ["src/modules/core/*"],
+      "@system/*": ["src/modules/system/*"],
+      "@features/*": ["src/modules/features/*"]
+    }
+  }
+}
