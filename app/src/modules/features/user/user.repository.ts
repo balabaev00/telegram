@@ -16,6 +16,12 @@ export class UserRepository {
         return this.model.create({
             firstName: user.firstName,
             lastName: user.lastName,
+            chatId: user.chatId,
+            globalId: user.globalId,
         });
+    }
+
+    findOneByChatId(chatId: number): Promise<UserDocument | null> {
+        return this.model.findOne({ chatId }).exec();
     }
 }

@@ -16,4 +16,10 @@ export class UserService {
 
         return this.mapper.toDto(entity);
     }
+
+    async findOneByChatId(chatId: number): Promise<UserDto | undefined> {
+        const entity = await this.userRepository.findOneByChatId(chatId);
+
+        return entity ? this.mapper.toDto(entity) : undefined;
+    }
 }
