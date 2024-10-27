@@ -1,15 +1,12 @@
 import { Expose } from 'class-transformer';
 
-export class CreateUserDto {
+export class UserDto {
     @Expose()
-    globalId!: string;
+    id!: string;
 
     @Expose()
     firstName!: string;
 
     @Expose()
     lastName?: string;
-
-    @Expose()
-    chatId!: number;
 }

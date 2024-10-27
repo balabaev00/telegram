@@ -1,6 +1,7 @@
 import { createLoggerConfig } from '@configs/logger.config';
 import { createMongoConfig } from '@configs/mongo.config';
 import { createTelegrafConfig } from '@configs/telegraf.config';
+import { BotModule } from '@features/bot/bot.module';
 import { UserModule } from '@features/user/user.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -34,6 +35,7 @@ import { TelegrafModule } from 'nestjs-telegraf';
         HealthModule,
         MetricModule,
         UserModule,
+        BotModule,
     ],
 })
 export class AppModule { }
