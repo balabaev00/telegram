@@ -1,6 +1,7 @@
+/* eslint-disable camelcase */
 import { GlobalUserService } from '@core/global-user/global-user.service';
 import { UserService } from '@features/user/user.service';
-import { Ctx, InjectBot, Start, Update } from 'nestjs-telegraf';
+import { Command, Ctx, InjectBot, Start, Update } from 'nestjs-telegraf';
 import { Telegraf } from 'telegraf';
 import { BotCommand } from 'telegraf/typings/core/types/typegram';
 
@@ -49,8 +50,30 @@ export class BotService {
                 chatId: message.chat.id,
             });
 
-            await ctx.reply(BotMessage.SUCCESSFULLY_REGISTERED);
+            await this.showMenu(BotMessage.SUCCESSFULLY_REGISTERED, ctx);
         }
     }
 
+    @Command('menu')
+    async menuCommand(@Ctx() ctx: IBotContext): Promise<void> {
+        await this.showMenu('Выберите действие:', ctx);
+    }
+
+    private async showMenu(message: string, ctx: IBotContext): Promise<void> {
+        await ctx.reply(message, {
+            reply_markup: {
+                inline_keyboard: [
+                    [
+                        { text: 'Добавить доход', callback_data: 'add_income' },
+                        { text: 'Добавить расход', callback_data: 'add_expense' },
+                    ],
+                    [
+                        { text: 'Посмотреть баланс', callback_data: 'view_balance' },
+                        { text: 'История транзакций', callback_data: 'transaction_history' },
+                    ],
+                    [{ text: 'Настройки', callback_data: 'settings' }],
+                ],
+            },
+        });
+    }
 }
